@@ -42,14 +42,14 @@ Par.Kinv = [1 0;                        % alpha/beta -> abc
            -0.5 -sqrt(3)/2];           
            
 % continuous-time system model
-% F = **** to be added ****
-% G1 = **** to be added ****
-% G2 = **** to be added ****
+F = eye(2)*(-Par.Grid_pu.R/Par.Grid_pu.X)
+G1 = eye(2)*(1/Par.Grid_pu.X)*Par.K
+G2 = eye(2)*(-1/Par.Grid_pu.X)
 
 % discrete-time system model (forward Euler)
-% Par.Ctr.A = **** to be added **** 
-% Par.Ctr.B1 = **** to be added **** 
-% Par.Ctr.B2 = **** to be added **** 
+Par.Ctr.A = 1+F*Par.Ts.control 
+Par.Ctr.B1 = G1*Par.Ts.control 
+Par.Ctr.B2 = G2*Par.Ts.control 
 
 % controller settings
 Par.Ctr.lambdaU = 10e-3;     	% penalty on switching

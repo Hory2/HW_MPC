@@ -62,10 +62,10 @@ relPhaseAmpl = [1; 1; 1];
 transfers={[-1 0],[-1 0 1],[0 1]};%legal tarnsfrer
 positions=combinations([1 2 3],[1,2,3],[1,2,3]);
 mega=cell(3,3,3);
-for i=size(positions,1)
-    j=positions{i,:}
-    tmp=table2array(combinations(transfers{j(1)},transfers{j(2)},transfers{j(3)}))
-    mega{i(1),i(2),i(3)}=tmp
+for i=1:size(positions,1)
+    j=positions{i,:};
+    tmp=table2array(combinations(transfers{j(1)},transfers{j(2)},transfers{j(3)}));
+    mega{j(1),j(2),j(3)}=tmp;
 end
 
-
+Par.my.mega=mega;

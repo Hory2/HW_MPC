@@ -57,3 +57,15 @@ Par.Ctr.lambdaU = 10e-3;     	% penalty on switching
 % gain in the three-phase grid voltage to simulate grid voltage asymmetries
 % (only required for Exercise 3.4)
 relPhaseAmpl = [1; 1; 1];
+
+
+transfers={[-1 0],[-1 0 1],[0 1]};%legal tarnsfrer
+positions=combinations([1 2 3],[1,2,3],[1,2,3]);
+mega=cell(3,3,3);
+for i=size(positions,1)
+    j=positions{i,:}
+    tmp=table2array(combinations(transfers{j(1)},transfers{j(2)},transfers{j(3)}))
+    mega{i(1),i(2),i(3)}=tmp
+end
+
+

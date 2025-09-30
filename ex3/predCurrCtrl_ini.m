@@ -68,4 +68,5 @@ for i=1:size(positions,1)
     mega{j(1),j(2),j(3)}=tmp;
 end
 
-Par.my.mega=mega;
+global mymega
+mymega=mega;

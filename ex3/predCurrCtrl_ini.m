@@ -42,17 +42,17 @@ Par.Kinv = [1 0;                        % alpha/beta -> abc
            -0.5 -sqrt(3)/2];           
            
 % continuous-time system model
-F = (-Par.Grid_pu.R/Par.Grid_pu.X)
-G1 = (1/Par.Grid_pu.X)*Par.K
-G2 = (-1/Par.Grid_pu.X)
+F = (-Par.Grid_pu.R/Par.Grid_pu.X) ;
+G1 = (1/Par.Grid_pu.X)*Par.K*Par.Grid_pu.Vdc*0.5;
+G2 = (-1/Par.Grid_pu.X) ;
 
 % discrete-time system model (forward Euler)
-Par.Ctr.A = 1+F*Par.Ts.control 
-Par.Ctr.B1 = G1*Par.Ts.control 
-Par.Ctr.B2 = G2*Par.Ts.control 
+Par.Ctr.A = 1+F*Par.Ts.control ;
+Par.Ctr.B1 = G1*Par.Ts.control ;
+Par.Ctr.B2 = G2*Par.Ts.control ;
 
 % controller settings
-Par.Ctr.lambdaU = 10e-5;     	% penalty on switching
+Par.Ctr.lambdaU = 10e-10;     	% penalty on switching
 
 % gain in the three-phase grid voltage to simulate grid voltage asymmetries
 % (only required for Exercise 3.4)

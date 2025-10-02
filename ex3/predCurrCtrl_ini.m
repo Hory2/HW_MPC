@@ -10,6 +10,7 @@ global Par
 Par.Ts.control = 100e-6;	% sampling interval of controller [s] 
 Par.Ts.system = 5e-6;       % sampling interval of power electronic system [s]
 
+
 % rated grid values
 Par.Rated.Vll = 3300;       % line-to-line rms voltage [V]
 Par.Rated.S = 9e6;          % apparent power [VA]
@@ -21,6 +22,7 @@ Par.Base.w = 2*pi*Par.Rated.f0;       	% base angular frequency [rad/s]
 Par.Base.V = sqrt(2/3)*Par.Rated.Vll;   % base voltage [V]
 Par.Base.I = sqrt(2)*Par.Rated.I;       % base current [A]
 Par.Base.Z = Par.Base.V / Par.Base.I;   % base impedance [Ohm]
+Par.Ts_pu.control = Par.Ts.control*Par.Base.w;
 
 % grid parameters in per unit
 Par.Grid_pu.X = 0.15;       % total grid reactance [pu]
@@ -47,12 +49,12 @@ G1 = (1/Par.Grid_pu.X)*Par.K*Par.Grid_pu.Vdc*0.5;
 G2 = (-1/Par.Grid_pu.X) ;
 
 % discrete-time system model (forward Euler)
-Par.Ctr.A = 1+F*Par.Ts.control ;
-Par.Ctr.B1 = G1*Par.Ts.control ;
-Par.Ctr.B2 = G2*Par.Ts.control ;
+Par.Ctr.A = 1+F*Par.Ts_pu.control ;
+Par.Ctr.B1 = G1*Par.Ts_pu.control ;
+Par.Ctr.B2 = G2*Par.Ts_pu.control ;
 
 % controller settings
-Par.Ctr.lambdaU = 10e-10;     	% penalty on switching
+Par.Ctr.lambdaU = 10e-3;     	% penalty on switching
 
 % gain in the three-phase grid voltage to simulate grid voltage asymmetries
 % (only required for Exercise 3.4)

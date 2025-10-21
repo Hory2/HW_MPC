@@ -1,5 +1,6 @@
 function [U, Uopt, rho, searchFlag] = sphDec(U, Uopt, dist, i, iMax, rho, Ubar_unc, V, searchFlag, u_km1)
 print =1;
+switchConstarinCheck=0;
 % basic sphere decoder
 %     
 % U:        switching sequence with -1,0,1 elements
@@ -23,7 +24,7 @@ for u = -1:1:1
     
     % check if transfer is legal
     valid_transefer=1;
-    if i>3
+    if i>3 && switchConstarinCheck
         if 1<(U(i)-U(i-3))
             valid_transefer=0;
             if print

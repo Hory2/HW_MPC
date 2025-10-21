@@ -58,7 +58,7 @@ Par.Ctr.lambdaU = 10e-3;     	% penalty on switching
 
 % gain in the three-phase grid voltage to simulate grid voltage asymmetries
 % (only required for Exercise 3.4)
-relPhaseAmpl = [1; 1; 1];
+relPhaseAmpl = [1.4; 1; 1];
 
 % 
 % transfers={[-1 0],[-1 0 1],[0 1]};%legal tarnsfrer

@@ -17,27 +17,27 @@ function [U, Uopt, rho, searchFlag] = sphDec(U, Uopt, dist, i, iMax, rho, Ubar_u
 % Petros Karamanakos, September 2025
 
 for u = -1:1:1
-    U(i) = ***;         % to be added
-    d = *** + dist;     % to be added
+    U(i) = u;         % to be added
+    d = norm(Ubar_unc(1:i)- V(1:i,1:i)*U(1:i),2)^2 + dist;     % to be added
     
     % display node information:
-%     for j = 1:i-1, fprintf('   '); end;
-%     fprintf('i=%i: U=', i); 
-%     fprintf('%i',U(1:i));
-%     fprintf(' dist/rho=%1.2f  ...', d/rho);
+    for j = 1:i-1, fprintf('   '); end;
+    fprintf('i=%i: U=', i); 
+    fprintf('%i',U(1:i));
+    fprintf(' dist/rho=%1.2f  ...', d/rho);
     
-    if *** % to be added
+    if d<=rho % to be added
         if i < iMax
-            %fprintf('branch further\n');
-            [U, Uopt, rho, searchFlag] = sphDec(U, Uopt, d, ***, iMax, rho, Ubar_unc, V, searchFlag, u_km1); % to be added
+            fprintf('branch further\n');
+            [U, Uopt, rho, searchFlag] = sphDec(U, Uopt, d, i+1, iMax, rho, Ubar_unc, V, searchFlag, u_km1); % to be added
         else
-            %fprintf('a (better) switching sequence found - tightening by %1.2f percent\n',(rho-d)/d*100);
+            fprintf('a (better) switching sequence found - tightening by %1.2f percent\n',(rho-d)/d*100);
             Uopt = U;
             rho = d;
             searchFlag = searchFlag + 1;            
         end
     else
-      	%fprintf('terminate (cut) branch\n');
+      	fprintf('terminate (cut) branch\n');
     end
 end
 

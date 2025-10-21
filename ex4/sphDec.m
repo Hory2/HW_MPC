@@ -1,5 +1,5 @@
 function [U, Uopt, rho, searchFlag] = sphDec(U, Uopt, dist, i, iMax, rho, Ubar_unc, V, searchFlag, u_km1)
-print =1;
+print =0;
 switchConstarinCheck=0;
 % basic sphere decoder
 %     
@@ -19,7 +19,7 @@ switchConstarinCheck=0;
 
 for u = -1:1:1
     U(i) = u;         % to be added
-    d = norm(Ubar_unc(1:i)- V(1:i,1:i)*U(1:i),2)^2 + dist;     % to be added
+    d = norm(Ubar_unc(i)- V(i,1:i)*U(1:i),2)^2 + dist;     % to be added
    
     
     % check if transfer is legal
@@ -39,6 +39,7 @@ for u = -1:1:1
         fprintf('i=%i: U=', i); 
         fprintf('%i',U(1:i));
         fprintf(' dist/rho=%1.2f  ...', d/rho);
+        fprintf('ro= %1.2f ... ',rho )
     end
 
     if d<=rho && valid_transefer % to be added

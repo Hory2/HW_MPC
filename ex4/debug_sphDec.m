@@ -42,6 +42,7 @@ Ubar_unc = V * Uk_unc;      % unconstrained solution in V-space
                             
 % initial solution
 Uk_ini = zeros(3*Np,1);  
+% Uk_ini=[0;1;0;0;1;0]
 Ubar_ini = V * Uk_ini;      % initial solution in V-space
 
 % upper bound on the squared distance

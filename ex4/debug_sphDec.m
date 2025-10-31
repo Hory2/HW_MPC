@@ -10,7 +10,6 @@ driveIni
 xk = [0.4; 0.96; 0.8895; -0.1933];      % machine state
 u_km1 = zeros(3,1);                     % previous switch position
 Np = Par.Ctr.Np;                        % prediction horizon
-
 % current reference
 if Np == 2
     % current reference at k+1 and k+2 in alpha/beta

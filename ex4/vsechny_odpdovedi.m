@@ -48,7 +48,7 @@ histogram(out4.iteraions.signals.values)
 histogram(out2.iteraions.signals.values)
 xlabel('number of iteration needed')
 ylabel('frequency')
-legend('N_u=2', 'N_u=3')
+legend('N_u=3','N_u=2')
 saveas(gcf, ['histo2.png']);
 
 %% 1.4 babai

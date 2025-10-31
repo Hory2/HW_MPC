@@ -51,7 +51,7 @@ Par.K = 2/3 * [1 -0.5 -0.5;           	% abc -> alpha/beta
 
 % controller settings
 Par.Ctr.lambda = 5e-3;  	% penalty on switching
-Par.Ctr.Np = 3;          	% prediction horizon (in time steps)
+Par.Ctr.Np = 2;          	% prediction horizon (in time steps)
 
 % initial conditions for the induction machine
 psiS0 = [1; 0];

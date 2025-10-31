@@ -24,15 +24,23 @@ for u = -1:1:1
     
     % check if transfer is legal
     valid_transefer=1;
-    if i>3 && switchConstarinCheck
-        if 1<(U(i)-U(i-3))
-            valid_transefer=0;
-            if print
-                fprintf("ivalid transfer detected \n")
+    if switchConstarinCheck
+        if i>3 
+            if 1>abs(U(i)-U(i-3))
+                valid_transefer=0;
+                if print
+                    fprintf("ivalid transfer detected \n")
+                end
+            end
+        else
+            if 1>abs(U(i)-u_km1(i))
+                valid_transefer=0;
+                if print
+                    fprintf("ivalid transfer detected \n")
+                end
             end
         end
     end
-
     % display node information:
     if print
         for j = 1:i-1, fprintf('   '); end;
